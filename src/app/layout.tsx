@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={arimo.className}>{children}</body>
+      <body suppressHydrationWarning={true} className={arimo.className}>{children}</body>
     </html>
   );
 }

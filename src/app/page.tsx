@@ -1,4 +1,4 @@
-import { BasicForm } from "@/components/product/form";
+import { FormPanjang, FormPendek } from "@/components/product/form";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 export default function Home() {
@@ -10,7 +10,8 @@ export default function Home() {
       </h1>
       <Card className="w-full md:w-fit">
         <CardContent className="p-3">
-          <BasicForm />
+          {/* <FormPendek /> */}
+          <FormPanjang />
         </CardContent>
         <CardFooter>
           <p className="text-xs font-semibold text-center w-full">

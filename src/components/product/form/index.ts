@@ -1,1 +1,2 @@
-export * from './basicForm';
+export * from './formPendek';
+export * from './formPanjang';

@@ -1,3 +1,7 @@
+import {
+  KADAR_FAEDAH_KONVENSIONAL_TAHUNAN,
+  KADAR_FAEDAH_SHARIAH_TAHUNAN,
+} from "@/constant/datacaruman";
 import { Caruman } from "@/types/form";
 
 export const carumanSebulan = (data: Caruman) => {
@@ -18,17 +22,18 @@ export const carumanJumlahSebulanPekerjaMajikan = (
   satuBulanMajikan: string
 ) => {
   return (Number(satuBulanPekerja) + Number(satuBulanMajikan)).toFixed(2);
-}
+};
 
 export const carumanSetahun = (carumSetahun: string) => {
   return (Number(carumSetahun) * 12).toFixed(2);
-}
+};
 
 export const carumanJumlahSetahunPekerjaMajikan = (
   satuBulanPekerja: string,
   satuBulanMajikan: string
 ) => {
   return (
-    Number(satuBulanPekerja) * 12 + Number(satuBulanMajikan) * 12
+    Number(satuBulanPekerja) * 12 +
+    Number(satuBulanMajikan) * 12
   ).toFixed(2);
-}
+};

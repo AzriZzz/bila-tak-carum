@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { DEFAULT_FORM_VALUES } from "@/constant/basicForm";
+import { DEFAULT_FORM_VALUES } from "@/constant/datacaruman";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -33,7 +33,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { basicFormSchemas } from "@/schemas/basicSchemas";
+import { basicFormSchemas } from "@/schemas/schemas";
 import { useBasicCarumStore } from "@/store/formStore";
 import {
   carumanJumlahSebulanPekerjaMajikan,
@@ -44,7 +44,7 @@ import {
 
 const formSchema = z.object(basicFormSchemas);
 
-const BasicForm = () => {
+const FormPendek = () => {
   const [dahKira, setDahKira] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -283,4 +283,4 @@ const BasicForm = () => {
   );
 };
 
-export { BasicForm };
+export { FormPendek };

@@ -3,3 +3,9 @@ export interface Caruman {
   carumanPekerja: string;
   carumanMajikan: string;
 }
+
+export interface IKadarFaedah {
+  value: string;
+  label: string;
+  defaultChecked: boolean;
+}
