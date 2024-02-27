@@ -1,8 +1,8 @@
-import {
-  KADAR_FAEDAH_KONVENSIONAL_TAHUNAN,
-  KADAR_FAEDAH_SHARIAH_TAHUNAN,
-} from "@/constant/datacaruman";
+import { advancedFormSchemas } from "@/schemas/schemas";
 import { Caruman } from "@/types/form";
+import { z } from "zod";
+
+const formSchema = z.object(advancedFormSchemas);
 
 export const carumanSebulan = (data: Caruman) => {
   const { gaji, carumanPekerja, carumanMajikan } = data;
@@ -36,4 +36,17 @@ export const carumanJumlahSetahunPekerjaMajikan = (
     Number(satuBulanPekerja) * 12 +
     Number(satuBulanMajikan) * 12
   ).toFixed(2);
+};
+
+export const kiraJumlahBesarCaruman = (
+  carumanMasuk: string,
+  data: z.infer<typeof formSchema>
+): { total: string; numberKadarPungutanDividen: string } => {
+  const { capitalSemasaEPF, kadarDividenTahunan } = data;
+  const valueA = Number(carumanMasuk) + Number(capitalSemasaEPF);
+  const kadarPungutanDividen = (valueA * Number(kadarDividenTahunan)) / 100;
+  const total = Number(valueA + kadarPungutanDividen).toFixed(2);
+  const numberKadarPungutanDividen = Number(kadarPungutanDividen).toFixed(2);
+
+  return { total, numberKadarPungutanDividen };
 };

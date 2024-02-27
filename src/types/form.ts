@@ -7,5 +7,4 @@ export interface Caruman {
 export interface IKadarFaedah {
   value: string;
   label: string;
-  defaultChecked: boolean;
 }

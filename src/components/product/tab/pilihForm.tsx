@@ -1,19 +1,31 @@
-import { FormPanjang, PilihForm } from "@/components/product";
+"use client";
+
+import React from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { FormPanjang, FormPendek } from "@/components/product/form";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Link from "next/link";
 
-export default function Home() {
+const PilihForm = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center pt-12 md:p-24 bg-slate-100 px-5">
-      <h1 className="text-2xl md:text-4xl font-bold mb-8 text-center">
-        😯 Bila Tak Carum{" "}
-        <span className="underline text-red-500">KWSP/EPF</span> 😯
-      </h1>
-      <div className="pb-5">
-        {/* <PilihForm /> */}
+    <div className="w-full">
+      <Tabs defaultValue="basic" className="w-full">
+        <TabsList className="w-full flex pb-4">
+          <TabsTrigger value="basic" className="w-full shadow-sm">
+            Basic
+          </TabsTrigger>
+          <TabsTrigger value="advanced" className="w-full">
+            Advanced
+          </TabsTrigger>
+        </TabsList>
         <Card className="w-full md:w-fit">
           <CardContent className="p-5">
-          <FormPanjang />
+            <TabsContent value="basic">
+              <FormPendek />
+            </TabsContent>
+            <TabsContent value="advanced">
+              <FormPanjang />
+            </TabsContent>
           </CardContent>
 
           <CardFooter>
@@ -40,8 +52,9 @@ export default function Home() {
             </p>
           </CardFooter>
         </Card>
-      </div>
-      
-    </main>
+      </Tabs>
+    </div>
   );
-}
+};
+
+export { PilihForm };

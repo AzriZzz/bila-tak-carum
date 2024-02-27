@@ -10,10 +10,9 @@ export const DEFAULT_ADVANCED_FORM_VALUES = {
   gaji: 3000,
   carumanPekerja: "11",
   carumanMajikan: "12",
-  capitalSemasaEPF: "10000",
+  capitalSemasaEPF: 10000,
   jenisAkaun: "konvensional" as const,
-  kadarKonvensional: "5.35",
-  kadarShariah: "4.75",
+  kadarDividenTahunan: "0.00"
 };
 
 export const PILIHAN_CARUMAN_PEKERJA = [
@@ -31,24 +30,24 @@ export const PILIHAN_CARUMAN_MAJIKAN = [
 ];
 
 export const KADAR_FAEDAH_KONVENSIONAL_TAHUNAN: IKadarFaedah[] = [
-  { value: "5.35", label: "2022 - 5.35", defaultChecked: false },
-  { value: "6.10", label: "2021 - 6.10", defaultChecked: false },
-  { value: "5.20", label: "2020 - 5.20", defaultChecked: false },
-  { value: "5.45", label: "2019 - 5.45", defaultChecked: false },
-  { value: "6.15", label: "2018 - 6.15", defaultChecked: false },
-  { value: "6.90", label: "2017 - 6.90", defaultChecked: false },
-  { value: "5.70", label: "2016 - 5.70", defaultChecked: false },
-  { value: "6.40", label: "2015 - 6.40", defaultChecked: false },
-  { value: "6.75", label: "2014 - 6.75", defaultChecked: false },
+  { value: "5.35", label: "2022 - 5.35" },
+  { value: "6.10", label: "2021 - 6.10" },
+  { value: "5.20", label: "2020 - 5.20" },
+  { value: "5.45", label: "2019 - 5.45" },
+  { value: "6.15", label: "2018 - 6.15" },
+  { value: "6.90", label: "2017 - 6.90" },
+  { value: "5.70", label: "2016 - 5.70" },
+  { value: "6.40", label: "2015 - 6.40" },
+  { value: "6.75", label: "2014 - 6.75" },
 ];
 
 export const KADAR_FAEDAH_SHARIAH_TAHUNAN: IKadarFaedah[] = [
-  { value: "4.75", label: "2022 - 4.75", defaultChecked: false },
-  { value: "5.65", label: "2021 - 5.65", defaultChecked: false },
-  { value: "4.90", label: "2020 - 4.90", defaultChecked: false },
-  { value: "5.00", label: "2019 - 5.00", defaultChecked: false },
-  { value: "5.90", label: "2018 - 5.90", defaultChecked: false },
-  { value: "6.40", label: "2017 - 6.40", defaultChecked: false },
+  { value: "4.75", label: "2022 - 4.75" },
+  { value: "5.65", label: "2021 - 5.65" },
+  { value: "4.90", label: "2020 - 4.90" },
+  { value: "5.00", label: "2019 - 5.00" },
+  { value: "5.90", label: "2018 - 5.90" },
+  { value: "6.40", label: "2017 - 6.40" },
 ];
 
 

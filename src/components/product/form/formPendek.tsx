@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -46,6 +46,7 @@ const formSchema = z.object(basicFormSchemas);
 
 const FormPendek = () => {
   const [dahKira, setDahKira] = useState(false);
+  const [semakGaji, setSemakGaji] = useState(5000);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -60,7 +61,7 @@ const FormPendek = () => {
   );
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data)
+    console.log(data);
     const { satuBulanCarumanPekerja, satuBulanCarumanMajikan } =
       carumanSebulan(data);
 
@@ -95,10 +96,13 @@ const FormPendek = () => {
                         onChange={(e) => {
                           field.onChange(e);
                           setDahKira(false);
+                          console.log(e.target.value);
                         }}
                       />
                     </FormControl>
-                    <FormDescription>Gaji ditawarkan oleh bakal Majikan</FormDescription>
+                    <FormDescription>
+                      Gaji ditawarkan oleh bakal Majikan
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -160,9 +164,7 @@ const FormPendek = () => {
                       </FormControl>
                       <SelectContent>
                         <SelectItem value="11">11</SelectItem>
-                        <SelectItem value="12" defaultChecked>
-                          12
-                        </SelectItem>
+                        <SelectItem value="12">12</SelectItem>
                         <SelectItem value="13">13</SelectItem>
                       </SelectContent>
                     </Select>
@@ -237,7 +239,7 @@ const FormPendek = () => {
               <TableRow>
                 <TableCell className="font-semibold">Jumlah</TableCell>
                 <TableCell className="font-semibold">
-                  RM {(carumanSetahun(satuBulanPekerja))}
+                  RM {carumanSetahun(satuBulanPekerja)}
                 </TableCell>
                 <TableCell className="font-semibold">
                   RM {carumanSetahun(satuBulanMajikan)}
