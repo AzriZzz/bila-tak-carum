@@ -8,8 +8,9 @@ type BasicCarumStore = {
   dividenTahunan: number;
   pungutanDividen: number;
   jumlahBesarCaruman: number;
-  setSatuBulanPekerja: (value: string) => void;
-  setDuaBelasBulanMajikan: (value: string) => void;
+  akaun1: number;
+  akaun2: number;
+  tahun: string;
 };
 
 export const useBasicCarumStore = create<BasicCarumStore>((set) => ({
@@ -20,6 +21,7 @@ export const useBasicCarumStore = create<BasicCarumStore>((set) => ({
   dividenTahunan: 0,
   pungutanDividen: 0,
   jumlahBesarCaruman: 0,
-  setSatuBulanPekerja: (value: string) => set({ satuBulanPekerja: value }),
-  setDuaBelasBulanMajikan: (value: string) => set({ satuBulanMajikan: value }),
+  akaun1: 0,
+  akaun2: 0,
+  tahun: '',
 }));

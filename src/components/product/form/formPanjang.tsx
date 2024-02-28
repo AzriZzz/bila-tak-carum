@@ -51,6 +51,13 @@ const FormPanjang = () => {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
+    console.log(data);
+    const { kadarDividenTahunan, akaun1, akaun2 } = data;
+    const splitValues = kadarDividenTahunan.split(" - ");
+
+    const tahun = splitValues[0];
+    const dividend = splitValues[1];
+
     const { satuBulanCarumanPekerja, satuBulanCarumanMajikan } =
       carumanSebulan(data);
 
@@ -69,14 +76,24 @@ const FormPanjang = () => {
     useBasicCarumStore.setState({ kapitalEPF: data.capitalSemasaEPF });
     useBasicCarumStore.setState({ carumanMasuk: Number(carumanMasuk) });
     useBasicCarumStore.setState({
-      dividenTahunan: Number(data.kadarDividenTahunan),
+      dividenTahunan: Number(dividend),
     });
     useBasicCarumStore.setState({
-      pungutanDividen: Number(numberKadarPungutanDividen),
+      pungutanDividen: Number(dividend),
     });
     useBasicCarumStore.setState({
       jumlahBesarCaruman: Number(total),
     });
+    useBasicCarumStore.setState({
+      tahun,
+    });
+    useBasicCarumStore.setState({
+      akaun1
+    });
+    useBasicCarumStore.setState({
+      akaun2
+    });
+
 
     setDahKira(true);
   };
@@ -188,10 +205,30 @@ const FormPanjang = () => {
             <div className="col-span-1">
               <FormField
                 control={form.control}
-                name="capitalSemasaEPF"
+                name="akaun1"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Kapital Semasa EPF</FormLabel>
+                    <FormLabel>Akaun 1 (RM)</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="RM 0.00"
+                        {...field}
+                        onChange={(e) => {
+                          field.onChange(e);
+                          setDahKira(false);
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="akaun2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Akaun 2 (RM)</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="RM 0.00"
@@ -203,7 +240,7 @@ const FormPanjang = () => {
                       />
                     </FormControl>
                     <FormDescription>
-                      Boleh semak di kenyataan akaun KWSP/EPF
+                      Boleh semak di akaun KWSP/EPF
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -322,7 +359,8 @@ const FormPanjang = () => {
 
       {dahKira && (
         <>
-          <JadualCaruman />
+          {/* <JadualCaruman /> */}
+          <JadualCarumanDanDividen />
         </>
       )}
     </div>

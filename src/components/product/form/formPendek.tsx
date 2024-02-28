@@ -41,6 +41,7 @@ import {
   carumanSetahun,
   carumanSebulan,
 } from "@/util/caruman";
+import { MONTHS } from "@/constant/date";
 
 const formSchema = z.object(basicFormSchemas);
 
@@ -75,6 +76,22 @@ const FormPendek = () => {
     e.preventDefault();
     form.reset();
     setDahKira(false);
+  };
+
+  const renderTableRows = () => {
+    return MONTHS.map((month, index) => (
+      <TableRow key={index}>
+        <TableCell className="font-medium">{month}</TableCell>
+        <TableCell>{satuBulanPekerja}</TableCell>
+        <TableCell>{satuBulanMajikan}</TableCell>
+        <TableCell className="text-right">
+          {carumanJumlahSebulanPekerjaMajikan(
+            satuBulanPekerja,
+            satuBulanMajikan
+          )}
+        </TableCell>
+      </TableRow>
+    ));
   };
 
   return (
@@ -199,53 +216,26 @@ const FormPendek = () => {
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[100px]">Bulan</TableHead>
-                <TableHead>Caruman Pekerja</TableHead>
-                <TableHead>Caruman Majikan</TableHead>
-                <TableHead className="text-right">Jumlah</TableHead>
+                <TableHead>
+                  Caruman Pekerja ({form.getValues("carumanPekerja")}%)
+                </TableHead>
+                <TableHead>
+                  Caruman Majikan ({form.getValues("carumanMajikan")}%)
+                </TableHead>
+                <TableHead className="text-right">Jumlah (RM)</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow>
-                <TableCell className="font-medium">Januari</TableCell>
-                <TableCell>RM {satuBulanPekerja}</TableCell>
-                <TableCell>RM {satuBulanMajikan}</TableCell>
-                <TableCell className="text-right">
-                  RM{" "}
-                  {carumanJumlahSebulanPekerjaMajikan(
-                    satuBulanPekerja,
-                    satuBulanMajikan
-                  )}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="font-medium">...</TableCell>
-                <TableCell>...</TableCell>
-                <TableCell>...</TableCell>
-                <TableCell className="text-right">...</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell className="font-medium">Disember</TableCell>
-                <TableCell>RM {satuBulanPekerja}</TableCell>
-                <TableCell>RM {satuBulanMajikan}</TableCell>
-                <TableCell className="text-right">
-                  RM{" "}
-                  {carumanJumlahSebulanPekerjaMajikan(
-                    satuBulanPekerja,
-                    satuBulanMajikan
-                  )}{" "}
-                </TableCell>
-              </TableRow>
-
+              {renderTableRows()}
               <TableRow>
                 <TableCell className="font-semibold">Jumlah</TableCell>
                 <TableCell className="font-semibold">
-                  RM {carumanSetahun(satuBulanPekerja)}
+                  {carumanSetahun(satuBulanPekerja)}
                 </TableCell>
                 <TableCell className="font-semibold">
-                  RM {carumanSetahun(satuBulanMajikan)}
+                  {carumanSetahun(satuBulanMajikan)}
                 </TableCell>
                 <TableCell className="text-right font-semibold">
-                  RM{" "}
                   {carumanJumlahSetahunPekerjaMajikan(
                     satuBulanPekerja,
                     satuBulanMajikan

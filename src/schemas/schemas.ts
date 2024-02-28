@@ -54,4 +54,26 @@ export const advancedFormSchemas = {
       message: "Sila pilih kadar dividen tahunan.",
     }
   ),
+  akaun1: z.coerce
+    .number({
+      invalid_type_error: "Input mestilah nombor.",
+    })
+    .min(1, {
+      message: "Tak boleh buat caruman kalau 0 atau negatif tuan/puan.",
+    })
+    .max(1000000, {
+      message:
+        "Tuan/Puan perlukan tax agent bertauliah untuk kurangkan tax, bukan caruman.",
+    }),
+  akaun2: z.coerce
+    .number({
+      invalid_type_error: "Input mestilah nombor.",
+    })
+    .min(1, {
+      message: "Tak boleh buat caruman kalau 0 atau negatif tuan/puan.",
+    })
+    .max(1000000, {
+      message:
+        "Tuan/Puan perlukan tax agent bertauliah untuk kurangkan tax, bukan caruman.",
+    }),
 };

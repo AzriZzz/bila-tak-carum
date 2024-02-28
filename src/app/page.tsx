@@ -10,8 +10,8 @@ export default function Home() {
         <span className="underline text-red-500">KWSP/EPF</span> 😯
       </h1>
       <div className="pb-5">
-        {/* <PilihForm /> */}
-        <Card className="w-full md:w-fit">
+        <PilihForm />
+        {/* <Card className="w-full md:w-fit">
           <CardContent className="p-5">
           <FormPanjang />
           </CardContent>
@@ -39,7 +39,7 @@ export default function Home() {
               </Link>
             </p>
           </CardFooter>
-        </Card>
+        </Card> */}
       </div>
       
     </main>
