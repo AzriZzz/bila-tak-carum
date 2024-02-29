@@ -1,7 +1,7 @@
 import { advancedFormSchemas } from "@/schemas/schemas";
 import { Caruman } from "@/types/form";
 import { z } from "zod";
-import { getDaysInMonth, getDaysInYear } from "./date";
+import { getDays } from "./date";
 
 const formSchema = z.object(advancedFormSchemas);
 
@@ -52,6 +52,33 @@ export const kiraJumlahBesarCaruman = (
   return { total, numberKadarPungutanDividen };
 };
 
+const jumlahDividenAkaunTakTermasukHariTerakhir = (
+  akaun1: number,
+  dividen: number,
+  hariDalamTahun: number,
+  hariDalamBulan: number
+) => {
+  return ((akaun1 * (dividen / 100)) / hariDalamTahun) * (hariDalamBulan - 1);
+};
+
+const kiraJumlahAkaun1HariTerakhir = (
+  akaun: number,
+  caruman: number,
+  dividen: number,
+  hariDalamTahun: number
+) => {
+  return ((akaun + caruman * 0.7) * (dividen / 100)) / hariDalamTahun;
+};
+
+const kiraJumlahAkaun2HariTerakhir = (
+  akaun: number,
+  caruman: number,
+  dividen: number,
+  hariDalamTahun: number
+) => {
+  return ((akaun + caruman * 0.3) * (dividen / 100)) / hariDalamTahun;
+};
+
 export const kiraDividenBulanan = (
   bulan: string,
   akaun1: number,
@@ -60,39 +87,70 @@ export const kiraDividenBulanan = (
   dividen: number,
   tahun: number
 ) => {
-  console.log(bulan, akaun1, akaun2, caruman, dividen, tahun);
-  // tahun is 2024 in string, find out how many days in that year
-  const hariDalamTahun = getDaysInYear(tahun);
+  const a = kiraDividenBulananAkaun1(bulan, akaun1, caruman, dividen, tahun);
+  const b = kiraDividenBulananAkaun2(bulan, akaun2, caruman, dividen, tahun);
 
-  // find out how many days in that month
-  const hariDalamBulan = getDaysInMonth(tahun, bulan);
+  return (Number(a) + Number(b)).toFixed(2);
+};
 
-  // formula dividen tak masuk 1 hari last setiap bulan
+export const kiraDividenBulananAkaun1 = (
+  bulan: string,
+  akaun1: number,
+  caruman: number,
+  dividen: number,
+  tahun: number
+) => {
+  const { hariDalamTahun, hariDalamBulan } = getDays(tahun, bulan);
+
   const jumlahDividenAkaun1TakTermasukHariTerakhir =
-    ((akaun1 * (dividen / 100)) / hariDalamTahun) * (hariDalamBulan - 1);
+    jumlahDividenAkaunTakTermasukHariTerakhir(
+      akaun1,
+      dividen,
+      hariDalamTahun,
+      hariDalamBulan
+    );
+
+  const jumlahAkaun1HariTerakhir = kiraJumlahAkaun1HariTerakhir(
+    akaun1,
+    caruman,
+    dividen,
+    hariDalamTahun
+  );
+
+  const totalJumlahDividenIkutBulan = (
+    jumlahDividenAkaun1TakTermasukHariTerakhir + jumlahAkaun1HariTerakhir
+  ).toFixed(2);
+
+  return totalJumlahDividenIkutBulan;
+};
+
+export const kiraDividenBulananAkaun2 = (
+  bulan: string,
+  akaun2: number,
+  caruman: number,
+  dividen: number,
+  tahun: number
+) => {
+  const { hariDalamTahun, hariDalamBulan } = getDays(tahun, bulan);
 
   const jumlahDividenAkaun2TakTermasukHariTerakhir =
-    ((akaun2 * (dividen / 100)) / hariDalamTahun) * (hariDalamBulan - 1);
+    jumlahDividenAkaunTakTermasukHariTerakhir(
+      akaun2,
+      dividen,
+      hariDalamTahun,
+      hariDalamBulan
+    );
 
-  // formula (dividen / 100) masuk 1 hari last setiap bulan
-  const jumlahAkaun1HariTerakhir =
-    ((akaun1 + caruman * 0.7) * (dividen / 100)) / hariDalamTahun;
+  const jumlahAkaun2HariTerakhir = kiraJumlahAkaun2HariTerakhir(
+    akaun2,
+    caruman,
+    dividen,
+    hariDalamTahun
+  );
 
-  const jumlahAkaun2HariTerakhir =
-    ((akaun2 + caruman * 0.3) * (dividen / 100)) / hariDalamTahun;
+  const totalJumlahDividenIkutBulan = (
+    jumlahDividenAkaun2TakTermasukHariTerakhir + jumlahAkaun2HariTerakhir
+  ).toFixed(2);
 
-  console.table([
-    jumlahDividenAkaun1TakTermasukHariTerakhir,
-    jumlahDividenAkaun2TakTermasukHariTerakhir,
-    jumlahAkaun1HariTerakhir,
-    jumlahAkaun2HariTerakhir,
-  ]);
-
-  const totalJumlahDividenIkutBulan =
-    jumlahDividenAkaun1TakTermasukHariTerakhir +
-    jumlahDividenAkaun2TakTermasukHariTerakhir +
-    jumlahAkaun1HariTerakhir +
-    jumlahAkaun2HariTerakhir;
-
-  return totalJumlahDividenIkutBulan.toFixed(2);
+  return totalJumlahDividenIkutBulan;
 };

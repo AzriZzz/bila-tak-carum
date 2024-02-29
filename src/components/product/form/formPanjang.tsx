@@ -51,7 +51,6 @@ const FormPanjang = () => {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
     const { kadarDividenTahunan, akaun1, akaun2 } = data;
     const splitValues = kadarDividenTahunan.split(" - ");
 

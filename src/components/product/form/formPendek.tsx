@@ -62,7 +62,6 @@ const FormPendek = () => {
   );
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
     const { satuBulanCarumanPekerja, satuBulanCarumanMajikan } =
       carumanSebulan(data);
 
@@ -113,7 +112,6 @@ const FormPendek = () => {
                         onChange={(e) => {
                           field.onChange(e);
                           setDahKira(false);
-                          console.log(e.target.value);
                         }}
                       />
                     </FormControl>

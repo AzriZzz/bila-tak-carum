@@ -20,3 +20,14 @@ export const getDaysInMonth = (year: number, monthString: string) => {
   const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
   return lastDayOfMonth;
 };
+
+export const getDays = (tahun: number, bulan: string) => {
+  const hariDalamTahun = getDaysInYear(tahun);
+
+  // find out how many days in that month
+  const hariDalamBulan = getDaysInMonth(tahun, bulan);
+  return {
+    hariDalamTahun,
+    hariDalamBulan,
+  };
+};
