@@ -65,10 +65,7 @@ const FormPanjang = () => {
       satuBulanCarumanMajikan
     );
 
-    const { total, numberKadarPungutanDividen } = kiraJumlahBesarCaruman(
-      carumanMasuk,
-      data
-    );
+    const { total } = kiraJumlahBesarCaruman(carumanMasuk, data);
 
     useBasicCarumStore.setState({ satuBulanPekerja: satuBulanCarumanPekerja });
     useBasicCarumStore.setState({ satuBulanMajikan: satuBulanCarumanMajikan });

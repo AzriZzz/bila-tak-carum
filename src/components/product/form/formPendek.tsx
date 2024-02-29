@@ -209,39 +209,43 @@ const FormPendek = () => {
 
       {dahKira && (
         <div className="pt-3">
-          <Table>
-            <TableCaption>Jadual Pembayaran Caruman</TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[100px]">Bulan</TableHead>
-                <TableHead>
-                  Caruman Pekerja ({form.getValues("carumanPekerja")}%)
-                </TableHead>
-                <TableHead>
-                  Caruman Majikan ({form.getValues("carumanMajikan")}%)
-                </TableHead>
-                <TableHead className="text-right">Jumlah (RM)</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {renderTableRows()}
-              <TableRow>
-                <TableCell className="font-semibold">Jumlah</TableCell>
-                <TableCell className="font-semibold">
-                  {carumanSetahun(satuBulanPekerja)}
-                </TableCell>
-                <TableCell className="font-semibold">
-                  {carumanSetahun(satuBulanMajikan)}
-                </TableCell>
-                <TableCell className="text-right font-semibold">
-                  {carumanJumlahSetahunPekerjaMajikan(
-                    satuBulanPekerja,
-                    satuBulanMajikan
-                  )}
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
+          <div className="grid grid-cols-1">
+            <div className="col-span-1">
+              <Table>
+                <TableCaption>Jadual Pembayaran Caruman</TableCaption>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[100px]">Bulan</TableHead>
+                    <TableHead>
+                      Caruman Pekerja ({form.getValues("carumanPekerja")}%)
+                    </TableHead>
+                    <TableHead>
+                      Caruman Majikan ({form.getValues("carumanMajikan")}%)
+                    </TableHead>
+                    <TableHead className="text-right">Jumlah (RM)</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {renderTableRows()}
+                  <TableRow>
+                    <TableCell className="font-semibold">Jumlah</TableCell>
+                    <TableCell className="font-semibold">
+                      {carumanSetahun(satuBulanPekerja)}
+                    </TableCell>
+                    <TableCell className="font-semibold">
+                      {carumanSetahun(satuBulanMajikan)}
+                    </TableCell>
+                    <TableCell className="text-right font-semibold">
+                      {carumanJumlahSetahunPekerjaMajikan(
+                        satuBulanPekerja,
+                        satuBulanMajikan
+                      )}
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </div>
 
           <div className="pt-5 text-center">
             <h3 className=" text-md font-semibold pb-4">Rumusan</h3>

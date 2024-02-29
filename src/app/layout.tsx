@@ -7,6 +7,13 @@ const arimo = Arimo({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Bila Tak Carum EPF",
   description: "Kiraan caruman EPF yang akan hilang jika tidak disumbangkan.",
+  icons: {
+    icon: {
+      url: "/favicon.ico",
+      type: "icon",
+    },
+    shortcut: { url: "/favicon.png", type: "icon" },
+  },
 };
 
 export default function RootLayout({

@@ -127,9 +127,9 @@ const JadualCarumanDanDividen = () => {
   );
 
   return (
-    <div className="pt-5">
-      <div className="py-4 ">
-        <Table className="w-full h-10 overflow-clip ">
+    <div className="grid grid-cols-1 pt-5">
+      <div className="col-span-1 pb-4 md:pb-0">
+        <Table>
           <TableCaption className="mt-0 mb-4">
             Ringkasan Caruman Dan Dividen
           </TableCaption>
@@ -188,41 +188,43 @@ const JadualCarumanDanDividen = () => {
         </Table>
       </div>
 
-      <Table>
-        <TableCaption className="mt-0 mb-4">
-          Illustrasi Caruman Dan Dividen
-        </TableCaption>
-        <TableHeader className="bg-slate-100">
-          <TableRow>
-            <TableHead>Bulan</TableHead>
-            <TableHead>Akaun 1 (RM)</TableHead>
-            <TableHead>Akaun 2 (RM)</TableHead>
+      <div className="col-span-1">
+        <Table>
+          <TableCaption className="mt-0 mb-4">
+            Illustrasi Caruman Dan Dividen
+          </TableCaption>
+          <TableHeader className="bg-slate-100">
+            <TableRow>
+              <TableHead>Bulan</TableHead>
+              <TableHead>Akaun 1 (RM)</TableHead>
+              <TableHead>Akaun 2 (RM)</TableHead>
 
-            <TableHead className=" max-sm:hidden">
-              Caruman Pekerja (RM)
-            </TableHead>
-            <TableHead className="max-sm:hidden">
-              Caruman Majikan (RM)
-            </TableHead>
-            <TableHead>Caruman Bulanan (RM)</TableHead>
-            <TableHead className="text-right">Dividen Bulanan (RM)</TableHead>
-          </TableRow>
-        </TableHeader>
+              <TableHead className=" max-sm:hidden">
+                Caruman Pekerja (RM)
+              </TableHead>
+              <TableHead className="max-sm:hidden">
+                Caruman Majikan (RM)
+              </TableHead>
+              <TableHead>Caruman Bulanan (RM)</TableHead>
+              <TableHead className="text-right">Dividen Bulanan (RM)</TableHead>
+            </TableRow>
+          </TableHeader>
 
-        <TableBody>
-          {MONTHS.map((month, index) =>
-            renderTableRow(
-              month,
-              akaun1 + carumanBulanan * index * 0.7,
-              akaun2 + carumanBulanan * index * 0.3,
-              satuBulanPekerja,
-              satuBulanMajikan,
-              carumanBulanan,
-              index
-            )
-          )}
-        </TableBody>
-      </Table>
+          <TableBody>
+            {MONTHS.map((month, index) =>
+              renderTableRow(
+                month,
+                akaun1 + carumanBulanan * index * 0.7,
+                akaun2 + carumanBulanan * index * 0.3,
+                satuBulanPekerja,
+                satuBulanMajikan,
+                carumanBulanan,
+                index
+              )
+            )}
+          </TableBody>
+        </Table>
+      </div>
 
       <br />
       <div className="text-center">
@@ -245,6 +247,7 @@ const JadualCarumanDanDividen = () => {
           </span>{" "}
           (setahun) untuk disimpan dalam tabung wang persaraan anda.
         </p>
+        <br />
 
         <p>
           Dengan kadar dividen{" "}
