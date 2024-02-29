@@ -87,12 +87,11 @@ const FormPanjang = () => {
       tahun,
     });
     useBasicCarumStore.setState({
-      akaun1
+      akaun1,
     });
     useBasicCarumStore.setState({
-      akaun2
+      akaun2,
     });
-
 
     setDahKira(true);
   };
@@ -356,12 +355,7 @@ const FormPanjang = () => {
         </form>
       </Form>
 
-      {dahKira && (
-        <>
-          {/* <JadualCaruman /> */}
-          <JadualCarumanDanDividen />
-        </>
-      )}
+      {dahKira && <JadualCarumanDanDividen />}
     </div>
   );
 };

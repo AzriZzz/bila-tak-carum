@@ -58,8 +58,8 @@ export const advancedFormSchemas = {
     .number({
       invalid_type_error: "Input mestilah nombor.",
     })
-    .min(1, {
-      message: "Tak boleh buat caruman kalau 0 atau negatif tuan/puan.",
+    .min(0, {
+      message: "Tak boleh buat caruman negatif tuan/puan.",
     })
     .max(1000000, {
       message:
@@ -69,8 +69,8 @@ export const advancedFormSchemas = {
     .number({
       invalid_type_error: "Input mestilah nombor.",
     })
-    .min(1, {
-      message: "Tak boleh buat caruman kalau 0 atau negatif tuan/puan.",
+    .min(0, {
+      message: "Tak boleh buat caruman negatif tuan/puan.",
     })
     .max(1000000, {
       message:

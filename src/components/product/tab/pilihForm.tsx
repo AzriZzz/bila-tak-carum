@@ -28,12 +28,12 @@ const PilihForm = () => {
             </TabsContent>
           </CardContent>
 
-          <CardFooter>
+          <CardFooter className="flex flex-col">
             <p className="text-xs font-semibold text-center w-full">
               Disclaimer: Data yang dikongsi hanyalah untuk tujuan ilustrasi dan
-              tidak mewakili sebarang nasihat kewangan. <br /> Untuk lebih tepat dan
-              terperinci, sila rujuk kepada penasihat kewangan bertauliah atau
-              link di bawah. <br />
+              tidak mewakili sebarang nasihat kewangan. <br /> Untuk lebih tepat
+              dan terperinci, sila rujuk kepada penasihat kewangan bertauliah
+              atau link di bawah. <br />
               <Link
                 className="underline text-blue-500"
                 href="https://www.kwsp.gov.my/ms/majikan/tanggungjawab/caruman-wajib"
@@ -48,6 +48,24 @@ const PilihForm = () => {
                 target="_blank"
               >
                 Jadual Ketiga - BM
+              </Link>
+            </p>
+            <br />
+            <p className="text-xs font-semibold text-center w-full flex flex-col">
+              Rujukan Formula:{" "}
+              <Link
+                className="underline text-blue-500"
+                href="https://royalphantomconsultant.wordpress.com/2019/02/21/bagaimana-dividen-kwsp-anda-dikira/"
+                target="_blank"
+              >
+                Bagaimana Dividen KWSP Anda Dikira
+              </Link>
+              <Link
+                className="underline text-blue-500"
+                href="https://klse.i3investor.com/web/blog/detail/kianweiaritcles/46486"
+                target="_blank"
+              >
+                EPF Dividend & Its Calculation - Bursa D
               </Link>
             </p>
           </CardFooter>

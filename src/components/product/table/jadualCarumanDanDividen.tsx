@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/table";
 import { useBasicCarumStore } from "@/store/formStore";
 import {
+  carumanJumlahSetahunPekerjaMajikan,
+  carumanSetahun,
   kiraDividenBulanan,
   kiraDividenBulananAkaun1,
   kiraDividenBulananAkaun2,
@@ -20,10 +22,7 @@ const JadualCarumanDanDividen = () => {
   const {
     satuBulanPekerja,
     satuBulanMajikan,
-    kapitalEPF,
     carumanMasuk,
-    dividenTahunan,
-    jumlahBesarCaruman,
     pungutanDividen,
     akaun1,
     akaun2,
@@ -67,10 +66,10 @@ const JadualCarumanDanDividen = () => {
         <TableCell className="font-semibold">{month}</TableCell>
         <TableCell className="font-semibold">
           {" "}
-          {pembukaAkaun1IkutBulan}
+          {pembukaAkaun1IkutBulan.toFixed(2)}
         </TableCell>
         <TableCell className="font-semibold text">
-          {pembukaAkaun2IkutBulan}
+          {pembukaAkaun2IkutBulan.toFixed(2)}
         </TableCell>
         <TableCell className="max-sm:hidden font-semibold text">
           {satuBulanPekerja}
@@ -78,7 +77,7 @@ const JadualCarumanDanDividen = () => {
         <TableCell className="max-sm:hidden font-semibold text">
           {satuBulanMajikan}
         </TableCell>
-        <TableCell className="max-sm:hidden font-semibold text">
+        <TableCell className="font-semibold text">
           {carumanBulanan.toFixed(2)}
         </TableCell>
         <TableCell className="text-right font-semibold">
@@ -129,53 +128,71 @@ const JadualCarumanDanDividen = () => {
 
   return (
     <div className="pt-5">
-      <Table>
-        <TableCaption className="mt-0 mb-4">
-          Ringkasan Caruman Dan Dividen
-        </TableCaption>
-        <TableHeader className=" bg-slate-100">
-          <TableRow>
-            <TableHead>Jenis Akaun </TableHead>
-            <TableHead>Baki Pembuka (RM)</TableHead>
-            <TableHead>Caruman Masuk (RM)</TableHead>
-            <TableHead className=" max-sm:hidden">
-              Dividen Tahunan ** (RM)
-            </TableHead>
-            <TableHead className="max-sm:hidden">Jumlah (RM)</TableHead>
-          </TableRow>
-        </TableHeader>
+      <div className="py-4 ">
+        <Table className="w-full h-10 overflow-clip ">
+          <TableCaption className="mt-0 mb-4">
+            Ringkasan Caruman Dan Dividen
+          </TableCaption>
+          <TableHeader className=" bg-slate-100">
+            <TableRow>
+              <TableHead>Jenis Akaun </TableHead>
+              <TableHead>Baki Pembuka (RM)</TableHead>
+              <TableHead>Caruman Masuk (RM)</TableHead>
+              <TableHead className=" ">Dividen Tahunan ** (RM)</TableHead>
+              <TableHead className=" text-right">Jumlah (RM)</TableHead>
+            </TableRow>
+          </TableHeader>
 
-        <TableBody>
-          <TableRow>
-            <TableCell className="font-medium">Akaun 1</TableCell>
-            <TableCell>{akaun1}</TableCell>
-            <TableCell>{carumanMasuk * 0.7}</TableCell>
-            <TableCell>{cumulativeDividendAkaun1.toFixed(2)}</TableCell>
-            <TableCell className="text-right">
-              {(akaun1 + carumanMasuk * 0.7 + cumulativeDividendAkaun1).toFixed(
-                2
-              )}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="font-medium">Akaun 2</TableCell>
-            <TableCell>{akaun2}</TableCell>
-            <TableCell>{carumanMasuk * 0.3}</TableCell>
-            <TableCell>{cumulativeDividendAkaun2.toFixed(2)}</TableCell>
-            <TableCell className="text-right">
-              {(akaun2 + carumanMasuk * 0.3 + cumulativeDividendAkaun2).toFixed(
-                2
-              )}
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+          <TableBody>
+            <TableRow>
+              <TableCell className="font-medium">Akaun 1</TableCell>
+              <TableCell>{akaun1.toFixed(2)}</TableCell>
+              <TableCell>{(carumanMasuk * 0.7).toFixed(2)}</TableCell>
+              <TableCell>{cumulativeDividendAkaun1.toFixed(2)}</TableCell>
+              <TableCell className="text-right">
+                {(
+                  akaun1 +
+                  carumanMasuk * 0.7 +
+                  cumulativeDividendAkaun1
+                ).toFixed(2)}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium">Akaun 2</TableCell>
+              <TableCell>{akaun2.toFixed(2)}</TableCell>
+              <TableCell>{(carumanMasuk * 0.3).toFixed(2)}</TableCell>
+              <TableCell>{cumulativeDividendAkaun2.toFixed(2)}</TableCell>
+              <TableCell className="text-right">
+                {(
+                  akaun2 +
+                  carumanMasuk * 0.3 +
+                  cumulativeDividendAkaun2
+                ).toFixed(2)}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium"></TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+              <TableCell className="font-bold">Jumlah</TableCell>
+              <TableCell className="text-right font-bold">
+                {(
+                  akaun1 +
+                  carumanMasuk * 0.7 +
+                  cumulativeDividendAkaun1 +
+                  (akaun2 + carumanMasuk * 0.3 + cumulativeDividendAkaun2)
+                ).toFixed(2)}
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </div>
 
       <Table>
         <TableCaption className="mt-0 mb-4">
           Illustrasi Caruman Dan Dividen
         </TableCaption>
-        <TableHeader className=" bg-slate-100">
+        <TableHeader className="bg-slate-100">
           <TableRow>
             <TableHead>Bulan</TableHead>
             <TableHead>Akaun 1 (RM)</TableHead>
@@ -187,9 +204,7 @@ const JadualCarumanDanDividen = () => {
             <TableHead className="max-sm:hidden">
               Caruman Majikan (RM)
             </TableHead>
-            <TableHead className="max-sm:hidden">
-              Caruman Bulanan (RM)
-            </TableHead>
+            <TableHead>Caruman Bulanan (RM)</TableHead>
             <TableHead className="text-right">Dividen Bulanan (RM)</TableHead>
           </TableRow>
         </TableHeader>
@@ -208,6 +223,50 @@ const JadualCarumanDanDividen = () => {
           )}
         </TableBody>
       </Table>
+
+      <br />
+      <div className="text-center">
+        <h3 className=" text-md font-semibold pb-4">Rumusan</h3>
+        <p>
+          Apabila bakal syarikat tidak mencarum KWSP/EPF, anda tidak layak untuk
+          mendapat caruman majikan iaitu sebanyak{" "}
+          <span className="font-bold text-red-500">RM {satuBulanMajikan}</span>{" "}
+          sebulan. Jika dihitung selama 12 bulan, anda akan kerugian sebanyak{" "}
+          <span className="font-bold text-red-500">
+            RM {carumanSetahun(satuBulanMajikan)}
+          </span>{" "}
+          dan sejumlah{" "}
+          <span className="font-bold text-red-500">
+            RM{" "}
+            {carumanJumlahSetahunPekerjaMajikan(
+              satuBulanPekerja,
+              satuBulanMajikan
+            )}
+          </span>{" "}
+          (setahun) untuk disimpan dalam tabung wang persaraan anda.
+        </p>
+
+        <p>
+          Dengan kadar dividen{" "}
+          <span className="font-bold text-red-500">
+            {pungutanDividen.toFixed(2)}%
+          </span>{" "}
+          setahun, anda berpotensi mendapat dividen sebanyak{" "}
+          <span className="font-bold text-red-500">
+            RM {cumulativeDividendAkaun1.toFixed(2)}
+          </span>{" "}
+          untuk akaun 1 dan{" "}
+          <span className="font-bold text-red-500">
+            RM {cumulativeDividendAkaun2.toFixed(2)}
+          </span>{" "}
+          untuk akaun 2. Jumlah dividen yang anda layak terima adalah sebanyak
+          <span className="font-bold text-red-500">
+            {""} RM{" "}
+            {(cumulativeDividendAkaun1 + cumulativeDividendAkaun2).toFixed(2)}
+          </span>{" "}
+          untuk tahun {tahun}.
+        </p>
+      </div>
     </div>
   );
 };
