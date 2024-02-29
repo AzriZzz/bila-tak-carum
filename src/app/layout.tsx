@@ -24,8 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className={arimo.className}>{children}</body>
+      <body suppressHydrationWarning={true} className={arimo.className}>{children}
       <BeamAnalytics />
+      </body>
     </html>
   );
 }
