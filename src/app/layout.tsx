@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Arimo } from "next/font/google";
 import "./globals.css";
+import BeamAnalytics from "./beamanalytics";
 
 const arimo = Arimo({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={arimo.className}>{children}</body>
+      <BeamAnalytics />
     </html>
   );
 }
