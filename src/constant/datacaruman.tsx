@@ -32,6 +32,7 @@ export const PILIHAN_CARUMAN_MAJIKAN = [
 ];
 
 export const KADAR_FAEDAH_KONVENSIONAL_TAHUNAN: IKadarFaedah[] = [
+  { value: "2023 - 5.50", label: "2023 - 5.50" },
   { value: "2022 - 5.35", label: "2022 - 5.35" },
   { value: "2021 - 6.10", label: "2021 - 6.10" },
   { value: "2020 - 5.20", label: "2020 - 5.20" },
@@ -44,6 +45,7 @@ export const KADAR_FAEDAH_KONVENSIONAL_TAHUNAN: IKadarFaedah[] = [
 ];
 
 export const KADAR_FAEDAH_SHARIAH_TAHUNAN: IKadarFaedah[] = [
+  { value: "2023 - 5.40", label: "2023 - 5.40" },
   { value: "2022 - 4.75", label: "2022 - 4.75" },
   { value: "2021 - 5.65", label: "2021 - 5.65" },
   { value: "2020 - 4.90", label: "2020 - 4.90" },
